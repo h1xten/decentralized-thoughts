@@ -1,13 +1,56 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: var(--main-bg);
+}
+:root {
+    --dark-bg: #363740;
+    --main-bg: #F7F8FC;
+    --main-blue: #3751FF;
+    --active-color: #DDE2FF;
+    --active-bg: #4a4c55;
+    --inactive-color: #A4A6B3;
+    --divider: #40414A;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+main {
+    display: flex;
+    min-height: calc(100vh - 80px);
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+}
+#root, main {
+    width: 100%;
+    height: 100%;
+}
+
+.page {
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 100vw;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+    font-size: 18px !important;
+}
+.container {
+    max-width: 1240px;
+    margin: 0px auto;
+    padding: 0px 50px;
+    box-sizing: content-box;
+}
+.logo-box {
+    transition: all 0.3s linear;
+}
+.logo-box:hover{
+    cursor: pointer;
+    color: #1976D2;
 }
