@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, SvgIcon} from "@mui/material";
+import { Box, Typography} from "@mui/material";
 
 const Homepage = () => {
   return (
