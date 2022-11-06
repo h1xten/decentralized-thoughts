@@ -1,7 +1,26 @@
 import React, {useState} from 'react'
-import {Box, Button, TextField, Typography, Stepper, Step, StepLabel, StepContent} from '@mui/material';
+import { Web3Storage } from 'web3.storage';
+import {
+    Box, 
+    Button, 
+    TextField, 
+    Typography, 
+    Stepper, 
+    Step, 
+    StepLabel, 
+    StepContent, 
+    Alert, 
+    AlertTitle, 
+    IconButton, 
+    Snackbar
+} from '@mui/material';
+import Loader from '../../components/loader/Loader';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { ContentCopyOutlined } from '@mui/icons-material';
+import MDEditor from '@uiw/react-md-editor'
 
 const Createpage = () => {
+
     const [activeStep, setActiveStep] = useState(0)
 
     const [postTitle, setPostTitle] = useState('')
@@ -12,16 +31,77 @@ const Createpage = () => {
 
     const [storageApiKey, setStorageApiKey] = useState('')
 
+    const [isLoading, setIsLoading] = useState(false)
+
+    const [CID, setCID] = useState(null)
+    const [copiedCID, setCopiedCID] = useState(false)
+
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
       };
     
-      const handleBack = () => {
+    const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
-      };
+    };
 
+    const storageHandler = async () => {
+        setIsLoading(true)
+        const storage = new Web3Storage({token: storageApiKey})
+        const data = {
+            post_title: postTitle,
+            post_body: postBody,
+            profile_nickname: profileNickname,
+            profile_description: profileDescription,
+            data_created: new Date().getTime(),
+        }
+        const blob = new Blob([JSON.stringify(data)], {type: 'application/json'})
+        const dataFile = [new File([blob], 'post.json')]
+        const cid = await storage.put(dataFile, {name: postTitle})
+        setCID(cid)
+        setIsLoading(false)
+    }
+
+    if(isLoading) return <Loader />
+
+    if(CID !== null && !isLoading) {
+        return(
+            <Box p={5}>
+                <Box>
+                    <Alert 
+                        severity='success'
+                        sx={{
+                            fontSize: '22px', 
+                            display: 'flex', 
+                            justifyContent: 'center',
+                            border: '1px solid green',
+                            borderRadius: '20px'
+                        }}>
+                        <AlertTitle><strong>Congratulations!</strong></AlertTitle>
+                        The post has been created. Save or remember the post CID for sharing. <br />
+                        <strong>CID: {CID}</strong>
+                        <CopyToClipboard text={CID} onCopy={()=>setCopiedCID(true)}>
+                            <IconButton>
+                                <ContentCopyOutlined />
+                            </IconButton>
+                        </CopyToClipboard>
+                    </Alert>
+                </Box>
+                <Snackbar
+                    open={copiedCID}
+                    autoHideDuration={6000}
+                    onClose={()=>setCopiedCID(false)}
+                >
+                    <Alert onClose={()=>setCopiedCID(false)} severity="success" sx={{ width: '100%' }}>
+                        CID Copied!
+                    </Alert>
+                </Snackbar>
+            </Box>
+        )
+    }
+
+    // Stepper form for create
   return (
-    <Box p={5}>
+    <Box p={5} className='bordered'>
         <Box>
             <Box mt={3} display='flex' justifyContent='center' alignItems='center'>
                 <Typography 
@@ -33,7 +113,9 @@ const Createpage = () => {
             </Box>
             <Stepper activeStep={activeStep} orientation='vertical'>
                 <Step>
-                    <StepLabel>Post</StepLabel>
+                    <StepLabel>
+                        Post
+                    </StepLabel>
                     <StepContent>
                         <TextField 
                             id="outlined-basic" 
@@ -45,21 +127,14 @@ const Createpage = () => {
                             value={postTitle}
                             onChange={e => setPostTitle(e.target.value)}
                         />
-                        <TextField
-                            id="outlined-multiline-static"
-                            label="Body"
-                            required 
-                            multiline
-                            fullWidth
-                            rows={4}
-                            margin='normal'
-                            value={postBody}
-                            onChange={e => setPostBody(e.target.value)}
-                        />
+                        <div data-color-mode="light">
+                            <MDEditor value={postBody} onChange={setPostBody} />
+                        </div>
                         <Box sx={{ mb: 2 }}>
                             <Button
                                 variant="contained"
                                 onClick={handleNext}
+                                disabled={postTitle === '' || postBody === ''}
                                 sx={{ mt: 1, mr: 1 }}
                                 size='small'
                             >
@@ -69,7 +144,9 @@ const Createpage = () => {
                     </StepContent>
                 </Step>
                 <Step>
-                    <StepLabel>Profile Settings</StepLabel>
+                    <StepLabel>
+                        Profile Settings
+                    </StepLabel>
                     <StepContent>
                         <TextField 
                             id="outlined-basic" 
@@ -95,6 +172,7 @@ const Createpage = () => {
                             <Button
                                 variant="contained"
                                 onClick={handleNext}
+                                disabled={profileNickname === ''}
                                 sx={{ mt: 1, mr: 1 }}
                                 size='small'
                             >
@@ -111,7 +189,9 @@ const Createpage = () => {
                     </StepContent>
                 </Step>
                 <Step>
-                    <StepLabel>Decentralized Storage</StepLabel>
+                    <StepLabel>
+                        Decentralized Storage
+                    </StepLabel>
                     <StepContent>
                         <TextField 
                             id="outlined-basic" 
@@ -126,7 +206,8 @@ const Createpage = () => {
                         <Box sx={{ mb: 2 }}>
                             <Button
                                 variant="contained"
-                                onClick={() => {}}
+                                onClick={()=>storageHandler()}
+                                disabled={storageApiKey === ''}
                                 sx={{ mt: 1, mr: 1 }}
                                 size='small'
                             >
@@ -143,7 +224,7 @@ const Createpage = () => {
                     </StepContent>
                 </Step>
             </Stepper>
-            
+            <Typography variant='p' sx={{fontSize: '14px', color: 'darkred'}}>* required fields</Typography>
         </Box>
     </Box>
   )
