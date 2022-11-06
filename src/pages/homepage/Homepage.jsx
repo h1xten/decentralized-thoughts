@@ -15,7 +15,7 @@ const Homepage = () => {
             </Typography>
             <Typography variant='p' fontSize='20px' paragraph={true} >
                 Markdown is used to write and display a post. <br/>
-                <a className='tip' href="https://www.markdownguide.org/basic-syntax/" target='_blank'>
+                <a className='tip' href="https://www.markdownguide.org/basic-syntax/" target='_blank' rel='noreferrer'>
                     Tips for getting familiar with Markdown syntax
                 </a>
                 .
@@ -23,7 +23,7 @@ const Homepage = () => {
             <Typography Typography variant='p' fontSize='20px' paragraph={true}>
                 Posts are first stored in Web3.storage IPFS clusters. <br />
                 <span>Therefore, you must have your own cluster  </span>
-                <a className='tip' href="https://web3.storage/" target='_blank'>
+                <a className='tip' href="https://web3.storage/" target='_blank' rel='noreferrer'>
                     Web3.storage
                 </a>
                 .
