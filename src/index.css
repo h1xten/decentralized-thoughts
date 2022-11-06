@@ -73,3 +73,9 @@ footer{
 .tip {
     color: var(--main-blue);
 }
+.rec_link:hover {
+    color: var(--main-blue);
+}
+.rec_link:not(:last-child){
+    margin-bottom: 5px;
+}

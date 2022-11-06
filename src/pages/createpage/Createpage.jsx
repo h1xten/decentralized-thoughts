@@ -12,11 +12,13 @@ import {
     Alert, 
     AlertTitle, 
     IconButton, 
-    Snackbar
+    Snackbar,
+    List,
+    ListItem
 } from '@mui/material';
 import Loader from '../../components/loader/Loader';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { ContentCopyOutlined } from '@mui/icons-material';
+import { ContentCopyOutlined, AddCircleOutlineOutlined, ClearOutlined } from '@mui/icons-material';
 import MDEditor from '@uiw/react-md-editor'
 
 const Createpage = () => {
@@ -28,6 +30,8 @@ const Createpage = () => {
 
     const [profileNickname, setProfileNickname] = useState('')
     const [profileDescription, setProfileDescription] = useState('')
+    const [recommendation, setRecommendation]=useState('')
+    const [recs, setRecs] = useState([])
 
     const [storageApiKey, setStorageApiKey] = useState('')
 
@@ -35,6 +39,18 @@ const Createpage = () => {
 
     const [CID, setCID] = useState(null)
     const [copiedCID, setCopiedCID] = useState(false)
+
+    const handlePushRec = () => {
+        if(recs.length < 5){
+            recs.push(recommendation)
+            setRecommendation('')
+        }
+    }
+
+    const handleDelRec = (index) => {
+        let newRecs = recs.filter((elem) => {return recs[index] !== elem})
+        setRecs(newRecs)
+    }
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -52,6 +68,7 @@ const Createpage = () => {
             post_body: postBody,
             profile_nickname: profileNickname,
             profile_description: profileDescription,
+            recommendations: recs,
             data_created: new Date().getTime(),
         }
         const blob = new Blob([JSON.stringify(data)], {type: 'application/json'})
@@ -112,6 +129,7 @@ const Createpage = () => {
                 </Typography>
             </Box>
             <Stepper activeStep={activeStep} orientation='vertical'>
+                {/* Step 1 */}
                 <Step>
                     <StepLabel>
                         Post
@@ -143,6 +161,7 @@ const Createpage = () => {
                         </Box>
                     </StepContent>
                 </Step>
+                {/* Step 2 */}
                 <Step>
                     <StepLabel>
                         Profile Settings
@@ -168,6 +187,35 @@ const Createpage = () => {
                             value={profileDescription}
                             onChange={e => setProfileDescription(e.target.value)}
                         />
+                        <Box display='flex'>
+                            <TextField 
+                                id="outlined-basic" 
+                                label="Recommendation"
+                                variant="outlined" 
+                                margin='normal'
+                                fullWidth
+                                value={recommendation}
+                                onChange={e => setRecommendation(e.target.value)}
+                            />
+                            <IconButton onClick={handlePushRec}>
+                                <AddCircleOutlineOutlined />
+                            </IconButton>
+                        </Box>
+                        
+                        <List sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', margin: '15px 0px'}}>
+                            {recs.length >= 1 ? recs.map((elem, index) => 
+                                    <ListItem key={index}>
+                                        {elem}
+                                        <IconButton onClick={()=>handleDelRec(index)}>
+                                            <ClearOutlined />
+                                        </IconButton>
+                                    </ListItem>
+                                )
+                                :
+                                <Typography variant='p'>Recommendation list is empty!</Typography>
+                            }
+                        </List>
+
                         <Box sx={{ mb: 2 }}>
                             <Button
                                 variant="contained"
@@ -188,6 +236,7 @@ const Createpage = () => {
                         </Box>
                     </StepContent>
                 </Step>
+                {/* Step 3 */}
                 <Step>
                     <StepLabel>
                         Decentralized Storage
