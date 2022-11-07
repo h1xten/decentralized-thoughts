@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Decentralized Thoughts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src='./assets/logo/logo-color.png' alt='DTlogo' >
 
-## Available Scripts
+**Decentralized Thoughts** is decentralized application for creating and storing posts.
 
-In the project directory, you can run:
+It allows users to create a message page with a simple user interface and then compile all the components of the message page into JSON data. The JSON file will then be stored on IPFS (Interplanetary File System) which is a distributed file system using Web3.Storage.
+The dApp allows you to share information in posts with the whole world using IPFS.
 
-### `npm start`
+## Development
+Developed with 
+- [React.js](https://reactjs.org/)
+- [MUI](https://mui.com/)
+- [Redux Toolkit Query](https://redux-toolkit.js.org/rtk-query/overview)
+- [IPFS](https://docs.ipfs.tech/)
+- [Web3.Storage](https://web3.storage/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Usage
+- [Demo dApp on fleek](https://decentralized-thoughts.on.fleek.co/)
+- [Demo dApp on vercel](https://decentralized-thoughts.vercel.app/)
+- [Video Demo](https://youtu.be/_sVQu5FBf5I)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Data for the test
+  Sometimes saving a post to storage can take longer than expected. Therefore, after creating a post, it is not always possible to immediately receive and display it. I included here the CIDS of the posts I created earlier to test the application:
+- bafybeigplksdcjn4r3fjstyryqom3f24ertgmtlaqrohcyqob2dyip74qq
+- bafybeigeuxkmos74rslxmnnt7gvzyzbfxasr4w3achmf5c2zzyrtmzz6te
+- bafybeihqsz362op54uvy6enammf42vzphkrh66fqxykvrobz3eufws5ovq
 
-### `npm test`
+## Contacts
+- [Telegram](https://t.me/h1xten) </br>
+- Discord - h1xten#3783 </br>
+- Email - h1xtenc@gmail.com </br>
+- [Project Repo](https://github.com/h1xten/decentralized-thoughts)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## License
+[MIT](LICENSE)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Notice
+This project is not audited and should not be used in a production environment.
