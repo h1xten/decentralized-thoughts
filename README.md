@@ -1,6 +1,6 @@
 # Decentralized Thoughts
 
-<img src='./src/assets/logo/logo-color.png' width='250px' alt='DTlogo' >
+<img src='./src/assets/logo/logo-color.png' width='550px' alt='DTlogo' >
 
 **Decentralized Thoughts** is decentralized application for creating and storing posts.
 
