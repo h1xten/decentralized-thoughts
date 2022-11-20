@@ -62,6 +62,10 @@ Developed with
 - bafybeigeuxkmos74rslxmnnt7gvzyzbfxasr4w3achmf5c2zzyrtmzz6te
 - bafybeihqsz362op54uvy6enammf42vzphkrh66fqxykvrobz3eufws5ovq
 
+## Future Updates
+- Ability to save files like user avatars, media files in post content.
+- Smart contract for donations for post authors if the author specified the address.
+
 ## Contacts
 - [Telegram](https://t.me/h1xten) </br>
 - Discord - h1xten#3783 </br>
