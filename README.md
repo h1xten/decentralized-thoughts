@@ -65,6 +65,7 @@ Developed with
 ## Future Updates
 - Ability to save files like user avatars, media files in post content.
 - Smart contract for donations for post authors if the author specified the address.
+- UI Improvement.
 
 ## Contacts
 - [Telegram](https://t.me/h1xten) </br>
