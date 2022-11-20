@@ -15,10 +15,46 @@ Developed with
 - [IPFS](https://docs.ipfs.tech/)
 - [Web3.Storage](https://web3.storage/)
 
-## Usage
+## Demo Usage
 - [Demo dApp on fleek](https://decentralized-thoughts.on.fleek.co/)
 - [Demo dApp on vercel](https://decentralized-thoughts.vercel.app/)
 - [Video Demo](https://youtu.be/_sVQu5FBf5I)
+
+## IPFS & Web3Storage Usage
+- [Create Post Page](https://github.com/h1xten/decentralized-thoughts/blob/ae33dcb8f003da784f564b1c7103134c2afe44c3/src/pages/createpage/Createpage.jsx#L63)
+  ```
+  const storageHandler = async () => {
+        setIsLoading(true)
+        const storage = new Web3Storage({token: storageApiKey})
+        const data = {
+            post_title: postTitle,
+            post_body: postBody,
+            profile_nickname: profileNickname,
+            profile_description: profileDescription,
+            recommendations: recs,
+            data_created: new Date().getTime(),
+        }
+        const blob = new Blob([JSON.stringify(data)], {type: 'application/json'})
+        const dataFile = [new File([blob], 'post.json')]
+        const cid = await storage.put(dataFile, {name: postTitle})
+        setCID(cid)
+        setIsLoading(false)
+    }
+  ```
+ 
+- [IPFS Query](https://github.com/h1xten/decentralized-thoughts/blob/ae33dcb8f003da784f564b1c7103134c2afe44c3/src/store/ipfsApi.js#L3)
+  ```
+  export const ipfsApi = createApi({
+    reducerPath: 'ipfsApi',
+    baseQuery: fetchBaseQuery({baseUrl: 'https://ipfs.io/ipfs/'}),
+    endpoints: (builder) => ({
+        getIpfsPost: builder.query({
+            query: (cid) => `${cid}/post.json`,
+        })
+    })
+  });
+  ```
+
 
 ## Data for the test
   Sometimes saving a post to storage can take longer than expected. Therefore, after creating a post, it is not always possible to immediately receive and display it. I included here the CIDS of the posts I created earlier to test the application:
