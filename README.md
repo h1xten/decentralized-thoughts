@@ -18,7 +18,6 @@ Developed with
 ## Demo Usage
 - [Demo dApp on fleek](https://decentralized-thoughts.on.fleek.co/)
 - [Demo dApp on vercel](https://decentralized-thoughts.vercel.app/)
-- [Video Demo](https://youtu.be/_sVQu5FBf5I)
 
 ## IPFS & Web3Storage Usage
 - [Create Post Page](https://github.com/h1xten/decentralized-thoughts/blob/ae33dcb8f003da784f564b1c7103134c2afe44c3/src/pages/createpage/Createpage.jsx#L63)
